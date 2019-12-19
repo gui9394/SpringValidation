@@ -19,12 +19,12 @@ public class PessoaService {
     }
 
     public PessoaDTO create(PessoaDTO pessoaDTO) {
-        return this.pessoaRepository.save(pessoaDTO.toEntity()).toDTO();
+        return PessoaDTO.fromEntity(this.pessoaRepository.save(pessoaDTO.toEntity()));
     }
 
     public List<PessoaDTO> findAll() {
         return this.pessoaRepository.findAll().stream()
-            .map((Pessoa item) -> { return item.toDTO(); })
+            .map((Pessoa pessoa) -> { return PessoaDTO.fromEntity(pessoa); })
             .collect(Collectors.toList());
     }
 

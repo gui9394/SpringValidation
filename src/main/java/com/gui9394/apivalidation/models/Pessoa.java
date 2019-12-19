@@ -3,9 +3,11 @@ package com.gui9394.apivalidation.models;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import com.gui9394.apivalidation.dtos.PessoaDTO;
+
 import com.gui9394.apivalidation.enums.Sexo;
 
 @Entity
@@ -22,6 +24,7 @@ public class Pessoa implements Serializable {
 
     private String dataNascimento;
 
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
     public Pessoa() {
@@ -73,9 +76,5 @@ public class Pessoa implements Serializable {
 
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
-    }
-
-    public PessoaDTO toDTO() {
-        return new PessoaDTO(this.idPessoa, this.nome, this.cpf, this.dataNascimento, this.sexo);
     }
 }

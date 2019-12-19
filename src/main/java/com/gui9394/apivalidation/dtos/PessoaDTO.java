@@ -14,23 +14,23 @@ import org.hibernate.validator.constraints.br.CPF;
 
 public class PessoaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    @Range(message = "RANGE INCORRETO")
+
+    @Range(message = "O campo nome tem ser > 0")
+    // @NotEmpty(message = "O campo nome id pode ser vazio")
     private Long id;
 
-    @Length(min = 10, message = "O tamanho minimo do campo e de 10 caracteres")
-    @Length(max = 30, message = "O tamanho do campo e 30 caracteres")
-    @NotEmpty
+    @Length(min = 10, max = 30, message = "O campo nome tem que ter entre 10 e 30 caracteres")
+    @NotEmpty(message = "O campo nome nao pode ser vazio")
     private String nome;
 
-    @CPF(message = "CPF invalidossssssssssssssssssssssssssss")
-    @NotEmpty(message = "Numero do documento nao pode ser nulo")
+    @CPF(message = "CPF invalido")
+    @NotEmpty(message = "O campo CPF nao pode ser vazio")
     private String cpf;
 
-    @NotEmpty
+    @NotEmpty(message = "O campo dataNascimento nao pode ser vazio")
     private String dataNascimento;
 
-    @NotNull(message = "ESTA MERDA NAO PODE SER NULA")
+    @NotNull(message = "O campo sexo nao pode ser vazio")
     private Sexo sexo;
 
     public PessoaDTO(Long idPessoa, String nome, String cpf, String dataNascimento, Sexo sexo) {
@@ -83,5 +83,10 @@ public class PessoaDTO implements Serializable {
 
     public Pessoa toEntity() {
         return new Pessoa(this.id, this.nome, this.cpf, this.dataNascimento, this.sexo);
+    }
+
+    public static PessoaDTO fromEntity(Pessoa pessoa) {
+        return new PessoaDTO(pessoa.getIdPessoa(), pessoa.getNome(), pessoa.getCpf(), pessoa.getDataNascimento(),
+                pessoa.getSexo());
     }
 }
