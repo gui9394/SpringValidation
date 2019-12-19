@@ -11,7 +11,11 @@ public class DataNascimentoValidation implements ConstraintValidator<DataValidat
 
   @Override
   public boolean isValid(String contactField, ConstraintValidatorContext cxt) {
-    return contactField.equals("05-03-1998");
+    if (contactField != null) {
+      return contactField.equals("05-03-1998");
+    }
+
+    return false;
   }
 
 }
