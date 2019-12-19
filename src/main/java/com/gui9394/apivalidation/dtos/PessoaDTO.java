@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import com.gui9394.apivalidation.enums.Sexo;
 import com.gui9394.apivalidation.models.Pessoa;
+import com.gui9394.apivalidation.validation.DataValidation;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -27,6 +28,7 @@ public class PessoaDTO implements Serializable {
     @NotEmpty(message = "O campo CPF nao pode ser vazio")
     private String cpf;
 
+    @DataValidation
     @NotEmpty(message = "O campo dataNascimento nao pode ser vazio")
     private String dataNascimento;
 
