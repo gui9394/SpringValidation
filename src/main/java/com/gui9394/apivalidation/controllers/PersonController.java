@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.gui9394.apivalidation.dtos.PessoaDTO;
-import com.gui9394.apivalidation.services.PessoaService;
+import com.gui9394.apivalidation.dtos.PersonDto;
+import com.gui9394.apivalidation.services.PersonService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,24 +14,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PessoaController {
+public class PersonController {
 
-    private PessoaService pessoaService;
+    private PersonService pessoaService;
 
-    PessoaController(PessoaService pessoaService) {
+    PersonController(PersonService pessoaService) {
         this.pessoaService = pessoaService;
     }
 
     @PostMapping()
-    public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaDTO pessoa) {
-        PessoaDTO bodyPessoa = this.pessoaService.create(pessoa);
+    public ResponseEntity<PersonDto> create(@Valid @RequestBody PersonDto pessoa) {
+        PersonDto bodyPessoa = this.pessoaService.create(pessoa);
 
         return ResponseEntity.ok(bodyPessoa);
     }
 
     @GetMapping()
-    public ResponseEntity<List<PessoaDTO>> findAll () {
-        List<PessoaDTO> bodyListaPessoa = this.pessoaService.findAll();
+    public ResponseEntity<List<PersonDto>> findAll() {
+        List<PersonDto> bodyListaPessoa = this.pessoaService.findAll();
 
         return ResponseEntity.ok(bodyListaPessoa);
     }

@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = DataNascimentoValidation.class)
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DataValidation {
+public @interface DateValidation {
   String message() default "Data de nascimento invalida";
 
   Class<?>[] groups() default {};

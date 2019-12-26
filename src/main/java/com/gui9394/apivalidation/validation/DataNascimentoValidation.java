@@ -3,14 +3,14 @@ package com.gui9394.apivalidation.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class DataNascimentoValidation implements ConstraintValidator<DataValidation, String> {
+public class DataNascimentoValidation implements ConstraintValidator<DateValidation, String> {
 
   @Override
-  public void initialize(DataValidation contactNumber) {
+  public void initialize(DateValidation dateValidation) {
   }
 
   @Override
-  public boolean isValid(String contactField, ConstraintValidatorContext cxt) {
+  public boolean isValid(String contactField, ConstraintValidatorContext context) {
     if (contactField != null) {
       return contactField.equals("05-03-1998");
     }
