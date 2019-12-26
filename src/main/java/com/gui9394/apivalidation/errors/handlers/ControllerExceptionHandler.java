@@ -22,7 +22,7 @@ public class ControllerExceptionHandler {
         List<ItemError> erros = new ArrayList<>();
         
         for (ObjectError errors : exception.getBindingResult().getAllErrors()) {
-            erros.add(new ItemError(errors.getDefaultMessage(), 532));
+            erros.add(new ItemError(errors.getDefaultMessage()));
         }
 
         Error error = new Error(LocalDateTime.now(), HttpStatus.BAD_REQUEST, erros);
@@ -37,10 +37,6 @@ public class ControllerExceptionHandler {
     public ResponseEntity<Error> allExceptin(Exception exception) {
         
         List<ItemError> erros = new ArrayList<>();
-        
-        // for (ObjectError errors : exception.getBindingResult().getAllErrors()) {
-        //     erros.add(new ItemError(errors.getDefaultMessage(), 532));
-        // }
 
         Error error = new Error(LocalDateTime.now(), HttpStatus.BAD_REQUEST, erros);
 

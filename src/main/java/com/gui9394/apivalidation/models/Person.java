@@ -28,7 +28,7 @@ public class Person implements Serializable {
     private PersonStatus status;
 
     public Person() {
-        this(0l, "", "", "", PersonStatus.DISABLED);
+        this(0l, "", "", "", PersonStatus.ENABLED);
     }
     
     public Person(Long idPerson, String name, String cpf, String dateBirth, PersonStatus status) {

@@ -31,7 +31,7 @@ public class PersonDto implements Serializable {
     @NotEmpty(message = "O campo dataNascimento nao pode ser vazio")
     private String dateBirth;
 
-    @Range(min = 666, max = 668)
+    @Range(min = 100, max = 101)
     @NotNull(message = "O campo sexo nao pode ser vazio")
     private int status;
 

@@ -4,19 +4,12 @@ public class ItemError {
 
 	private String message;
 
-	private int code;
-
-	public ItemError(String message, int code) {
+	public ItemError(String message) {
 		this.message = message;
-		this.code = code;
 	}
 
 	public String getMessage() {
 		return this.message;
-	}
-
-	public int getCode() {
-		return this.code;
 	}
 
 }
