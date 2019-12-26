@@ -20,15 +20,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>br.com.conpay</groupId>
-			<artifactId>core</artifactId>
-			<version>1.0-SNAPSHOT</version>
-
-			<scope>system</scope>
-			<systemPath>/home/paulo/Projetos/gui9394/core/target/core-1.0-SNAPSHOT.jar</systemPath>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
