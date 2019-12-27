@@ -14,9 +14,9 @@ public class Error {
 
 	private HttpStatus status;
 
-	private List<ItemError> erros = new ArrayList<>();
+	private List<ValidationError> erros = new ArrayList<>();
 
-	public Error(LocalDateTime timeStamp, HttpStatus status, List<ItemError> erros) {
+	public Error(LocalDateTime timeStamp, HttpStatus status, List<ValidationError> erros) {
 		this.timeStamp = timeStamp;
 		this.status = status;
 		this.erros = erros;
@@ -36,7 +36,7 @@ public class Error {
 		return this.status.getReasonPhrase();
 	}
 
-	public List<ItemError> getErros() {
+	public List<ValidationError> getErros() {
 		return this.erros;
 	}
 
