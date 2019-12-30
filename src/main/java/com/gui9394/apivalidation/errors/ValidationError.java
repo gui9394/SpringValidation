@@ -1,4 +1,4 @@
-package com.gui9394.apivalidation.errors.entitys;
+package com.gui9394.apivalidation.errors;
 
 public class ValidationError {
 

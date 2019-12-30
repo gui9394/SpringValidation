@@ -12,7 +12,9 @@ import com.gui9394.apivalidation.validation.DateValidation;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.validation.annotation.Validated;
 
+@Validated
 public class PersonDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
