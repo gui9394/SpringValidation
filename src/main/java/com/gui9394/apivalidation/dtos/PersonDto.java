@@ -1,22 +1,17 @@
 package com.gui9394.apivalidation.dtos;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import com.gui9394.apivalidation.enums.PersonStatus;
 import com.gui9394.apivalidation.models.Person;
 import com.gui9394.apivalidation.validation.DateValidation;
+import com.gui9394.apivalidation.validation.ValueOfEnum;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.validation.annotation.Validated;
 
-@Validated
-public class PersonDto implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class PersonDto {
 
     @Range(message = "O campo nome tem ser > 0")
     private Long id;
@@ -30,14 +25,14 @@ public class PersonDto implements Serializable {
     private String cpf;
 
     @DateValidation
-    @NotEmpty(message = "O campo dataNascimento nao pode ser vazio")
+    @NotEmpty
     private String dateBirth;
 
-    @Range(min = 100, max = 102)
-    @NotNull(message = "O campo sexo nao pode ser vazio")
-    private int status;
+    @ValueOfEnum(enumClass = PersonStatus.class)
+    @NotEmpty(message = "O campo status nao pode ser vazio")
+    private String status;
 
-    public PersonDto(Long id, String name, String cpf, String dateBirth, int status) {
+    public PersonDto(Long id, String name, String cpf, String dateBirth, String status) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -77,11 +72,11 @@ public class PersonDto implements Serializable {
         this.dateBirth = dateBirth;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -91,6 +86,6 @@ public class PersonDto implements Serializable {
 
     public static PersonDto fromEntity(Person entity) {
         return new PersonDto(entity.getIdPerson(), entity.getName(), entity.getCpf(), entity.getDateBirth(),
-                entity.getStatus().getValue());
+                entity.getStatus().name());
     }
 }

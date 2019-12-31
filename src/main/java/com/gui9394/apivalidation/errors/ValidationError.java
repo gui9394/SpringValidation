@@ -4,11 +4,11 @@ public class ValidationError {
 
 	private String field;
 
-	private String value;
+	private Object value;
 
 	private String message;
 
-	public ValidationError(String field, String value, String message) {
+	public ValidationError(String field, Object value, String message) {
 		this.field = field;
 		this.value = value;
 		this.message = message;
@@ -18,7 +18,7 @@ public class ValidationError {
 		return this.field;
 	}
 
-	public String getValue() {
+	public Object getValue() {
 		return this.value;
 	}
 

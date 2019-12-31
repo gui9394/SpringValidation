@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletResponse;
 
 import com.gui9394.apivalidation.errors.BodyError;
 import com.gui9394.apivalidation.errors.ValidationError;
@@ -26,7 +25,7 @@ public class DefaultControllerAdvice {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         List<ValidationError> erros = exception.getBindingResult().getFieldErrors().stream()
                 .map((FieldError mapper) -> {
-                    return new ValidationError(mapper.getField(), mapper.getRejectedValue().toString(),
+                    return new ValidationError(mapper.getField(), mapper.getRejectedValue(),
                             mapper.getDefaultMessage());
                 }).collect(Collectors.toList());
 
@@ -34,8 +33,12 @@ public class DefaultControllerAdvice {
     }
 
     @ExceptionHandler(Exception.class)
-    public HttpServletResponse allException(Exception exception, HttpStatus status, HttpServletResponse response) {
+    public ResponseEntity<BodyError> allException(Exception exception) {
 
-        return response;
+        LocalDateTime timeStamp = LocalDateTime.now();
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        List<ValidationError> erros = new ArrayList<>();
+
+        return new ResponseEntity<>(new BodyError(status, timeStamp, erros), status);
     }
 }
