@@ -1,7 +1,9 @@
 package com.gui9394.apivalidation.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,22 +22,26 @@ public class Person implements Serializable {
 
     private String name;
 
+    @Column(unique = true)
     private String cpf;
 
     private String dateBirth;
+
+    private LocalDate date;
 
     @Enumerated(EnumType.STRING)
     private PersonStatus status;
 
     public Person() {
-        this(0l, "", "", "", PersonStatus.ENABLED);
+        this(0l, "", "", "", LocalDate.now(), PersonStatus.ENABLED);
     }
     
-    public Person(Long idPerson, String name, String cpf, String dateBirth, PersonStatus status) {
+    public Person(Long idPerson, String name, String cpf, String dateBirth, LocalDate date, PersonStatus status) {
         this.idPerson = idPerson;
         this.name = name;
         this.cpf = cpf;
         this.dateBirth = dateBirth;
+        this.date = date;
         this.status = status;
     }
 
@@ -69,6 +75,14 @@ public class Person implements Serializable {
 
     public void setDateBirth(String dateBirth) {
         this.dateBirth = dateBirth;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public PersonStatus getStatus() {

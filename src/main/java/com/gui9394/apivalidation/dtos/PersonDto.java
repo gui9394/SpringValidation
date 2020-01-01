@@ -1,11 +1,15 @@
 package com.gui9394.apivalidation.dtos;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import com.gui9394.apivalidation.enums.PersonStatus;
 import com.gui9394.apivalidation.models.Person;
 import com.gui9394.apivalidation.validation.DateValidation;
-import com.gui9394.apivalidation.validation.ValueOfEnum;
+import com.gui9394.apivalidation.validation.EnumOfAny;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -28,15 +32,21 @@ public class PersonDto {
     @NotEmpty
     private String dateBirth;
 
-    @ValueOfEnum(enumClass = PersonStatus.class)
-    @NotEmpty(message = "O campo status nao pode ser vazio")
-    private String status;
+    @NotNull(message = "O campo status nao pode ser vazio")
+    private LocalDate date;
 
-    public PersonDto(Long id, String name, String cpf, String dateBirth, String status) {
+
+    // @ValueOfEnum(enumClass = PersonStatus.class)
+    // @EnumOfAny(anyOf = { "DISABLED", "ENABLED" })
+    @NotNull(message = "O campo status nao pode ser vazio")
+    private PersonStatus status;
+
+    public PersonDto(Long id, String name, String cpf, String dateBirth, LocalDate date, PersonStatus status) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.dateBirth = dateBirth;
+        this.date = date;
         this.status = status;
     }
 
@@ -72,20 +82,28 @@ public class PersonDto {
         this.dateBirth = dateBirth;
     }
 
-    public String getStatus() {
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public PersonStatus getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PersonStatus status) {
         this.status = status;
     }
 
     public Person toEntity() {
-        return new Person(this.id, this.name, this.cpf, this.dateBirth, PersonStatus.valueOf(this.status));
+        return new Person(this.id, this.name, this.cpf, this.dateBirth, this.date, this.status);
     }
 
     public static PersonDto fromEntity(Person entity) {
         return new PersonDto(entity.getIdPerson(), entity.getName(), entity.getCpf(), entity.getDateBirth(),
-                entity.getStatus().name());
+                entity.getDate(), entity.getStatus());
     }
 }

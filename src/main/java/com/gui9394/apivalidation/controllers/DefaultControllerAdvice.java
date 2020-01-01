@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 import com.gui9394.apivalidation.errors.BodyError;
 import com.gui9394.apivalidation.errors.ValidationError;
 
-@RestControllerAdvice
+// @RestControllerAdvice
 public class DefaultControllerAdvice {
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    // @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<BodyError> methodArgumentNotValidException(MethodArgumentNotValidException exception) {
 
         LocalDateTime timeStamp = LocalDateTime.now();
@@ -29,16 +29,22 @@ public class DefaultControllerAdvice {
                             mapper.getDefaultMessage());
                 }).collect(Collectors.toList());
 
-        return new ResponseEntity<>(new BodyError(status, timeStamp, erros), status);
+        // return new ResponseEntity<>(new BodyError(status, timeStamp, erros), status);
+        return null;
     }
 
-    @ExceptionHandler(Exception.class)
+    // @ExceptionHandler(Exception.class)
     public ResponseEntity<BodyError> allException(Exception exception) {
 
         LocalDateTime timeStamp = LocalDateTime.now();
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         List<ValidationError> erros = new ArrayList<>();
 
-        return new ResponseEntity<>(new BodyError(status, timeStamp, erros), status);
+        // if (status == null) {
+        //     status = HttpStatus.INTERNAL_SERVER_ERROR;
+        // }
+
+        // return new ResponseEntity<>(new BodyError(status, timeStamp, erros), status);
+        return null;
     }
 }
