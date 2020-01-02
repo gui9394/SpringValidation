@@ -1,4 +1,4 @@
-package com.gui9394.apivalidation.validation;
+package com.gui9394.apivalidation.validation.validator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +7,10 @@ import java.util.stream.Stream;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class EnumOfAnyValidator implements ConstraintValidator<EnumOfAny, String> {
+import com.gui9394.apivalidation.validation.EnumOfAny;
+
+@SuppressWarnings("all")
+public class EnumOfAnyValidator implements ConstraintValidator<EnumOfAny, Enum> {
     private List<String> acceptedValues;
 
     @Override
@@ -16,7 +19,7 @@ public class EnumOfAnyValidator implements ConstraintValidator<EnumOfAny, String
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        return acceptedValues.contains(value);
+    public boolean isValid(Enum value, ConstraintValidatorContext context) {
+        return acceptedValues.contains(value.name());
     }
 }

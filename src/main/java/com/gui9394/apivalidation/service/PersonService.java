@@ -1,12 +1,13 @@
-package com.gui9394.apivalidation.services;
+package com.gui9394.apivalidation.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.gui9394.apivalidation.dtos.PersonDto;
-import com.gui9394.apivalidation.errors.ConflictException;
-import com.gui9394.apivalidation.models.Person;
-import com.gui9394.apivalidation.repositories.PersonRepository;
+import com.gui9394.apivalidation.dto.PersonDto;
+import com.gui9394.apivalidation.error.ConflictException;
+import com.gui9394.apivalidation.error.NotFoundException;
+import com.gui9394.apivalidation.model.Person;
+import com.gui9394.apivalidation.repository.PersonRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,14 @@ public class PersonService {
             throw new ConflictException("CPF ja cadastrado");
         }
 
+    }
+
+    public PersonDto findOne(Long id) {
+        try {
+            return PersonDto.fromEntity(this.pessoaRepository.getOne(id));
+        } catch (Exception e) {
+            throw new NotFoundException("Registro não encontrado");
+        }
     }
 
     public List<PersonDto> findAll() {

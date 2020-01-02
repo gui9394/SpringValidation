@@ -1,4 +1,4 @@
-package com.gui9394.apivalidation.enums;
+package com.gui9394.apivalidation.enumeration;
 
 public enum PersonStatus {
     ENABLED, DISABLED;

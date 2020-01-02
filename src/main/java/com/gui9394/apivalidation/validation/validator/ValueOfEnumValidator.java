@@ -1,4 +1,4 @@
-package com.gui9394.apivalidation.validation;
+package com.gui9394.apivalidation.validation.validator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
+import com.gui9394.apivalidation.validation.ValueOfEnum;
 
 public class ValueOfEnumValidator implements ConstraintValidator<ValueOfEnum, String> {
     private List<String> acceptedValues;

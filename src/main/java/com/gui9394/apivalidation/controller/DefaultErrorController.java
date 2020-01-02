@@ -1,4 +1,4 @@
-package com.gui9394.apivalidation.controllers;
+package com.gui9394.apivalidation.controller;
 
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -22,8 +22,7 @@ public class DefaultErrorController extends AbstractErrorController {
     @RequestMapping
     @ResponseBody
     public Map<String, Object> error(HttpServletRequest request) {
-        Map<String, Object> body = this.getErrorAttributes(request, false);
-        return body;
+        return this.getErrorAttributes(request, false);
     }
 
     @Override

@@ -1,6 +1,6 @@
-package com.gui9394.apivalidation.errors;
+package com.gui9394.apivalidation.error;
 
-public class ValidationError {
+public class ApiFieldError {
 
 	private String field;
 
@@ -8,7 +8,7 @@ public class ValidationError {
 
 	private String message;
 
-	public ValidationError(String field, Object value, String message) {
+	public ApiFieldError(String field, Object value, String message) {
 		this.field = field;
 		this.value = value;
 		this.message = message;

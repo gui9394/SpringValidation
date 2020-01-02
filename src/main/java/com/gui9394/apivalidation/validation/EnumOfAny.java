@@ -9,6 +9,8 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+import com.gui9394.apivalidation.validation.validator.EnumOfAnyValidator;
+
 @Documented
 @Constraint(validatedBy = EnumOfAnyValidator.class)
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR,

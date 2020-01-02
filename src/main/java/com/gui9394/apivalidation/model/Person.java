@@ -1,4 +1,4 @@
-package com.gui9394.apivalidation.models;
+package com.gui9394.apivalidation.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import com.gui9394.apivalidation.enums.PersonStatus;
+import com.gui9394.apivalidation.enumeration.PersonStatus;
 
 @Entity
 public class Person implements Serializable {
@@ -25,23 +25,20 @@ public class Person implements Serializable {
     @Column(unique = true)
     private String cpf;
 
-    private String dateBirth;
-
-    private LocalDate date;
+    private LocalDate dateBirth;
 
     @Enumerated(EnumType.STRING)
     private PersonStatus status;
 
     public Person() {
-        this(0l, "", "", "", LocalDate.now(), PersonStatus.ENABLED);
+        this(0l, "", "", LocalDate.now(), PersonStatus.ENABLED);
     }
     
-    public Person(Long idPerson, String name, String cpf, String dateBirth, LocalDate date, PersonStatus status) {
+    public Person(Long idPerson, String name, String cpf, LocalDate dateBirth, PersonStatus status) {
         this.idPerson = idPerson;
         this.name = name;
         this.cpf = cpf;
         this.dateBirth = dateBirth;
-        this.date = date;
         this.status = status;
     }
 
@@ -69,20 +66,12 @@ public class Person implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getDateBirth() {
+    public LocalDate getDateBirth() {
         return this.dateBirth;
     }
 
-    public void setDateBirth(String dateBirth) {
+    public void setDateBirth(LocalDate dateBirth) {
         this.dateBirth = dateBirth;
-    }
-
-    public LocalDate getDate() {
-        return this.date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     public PersonStatus getStatus() {
